@@ -4,13 +4,12 @@
   "author": "Chadwick Banning",
   "summary": "Install and configure perlbrew",
   "license": "Apache 2.0",
-  "source": "",
-  "project_page": null,
-  "issues_url": null,
+  "source": "git@github.com:walkamongus/puppet-perlbrew.git",
+  "project_page": "https://github.com/walkamongus/puppet-perlbrew",
+  "issues_url": "https://github.com/walkamongus/puppet-perlbrew/issues",
   "dependencies": [
     {
-      "name": "puppetlabs-stdlib",
-      "version_range": ">= 1.0.0"
+    	"name": "puppetlabs-stdlib"
     }
   ]
 }
