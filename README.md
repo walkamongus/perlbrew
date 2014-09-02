@@ -18,19 +18,16 @@
 This module installs and configures Perlbrew.  It also includes optional classes 
 to install Perl and CPAN moudles via Perlbew.
 
-Tested on:
-* Puppet 3.6.2
-* CentOS 6.5 
-
 ## Module Description
 
-If applicable, this section should have a brief description of the technology
-the module integrates with and what that integration enables. This section
-should answer the questions: "What does this module *do*?" and "Why would I use
-it?"
+This module primarily focuses on installing and configuring Perlbrew. There are
+optional classes that may be declared for installing a spcific version of Perl
+as well as installing CPAN modules for a Perl installed with Perlbrew.
 
-If your module has a range of functionality (installation, configuration,
-management, etc.) this is the time to mention it.
+Perlbrew configuration is currently limited. Perl compile-time options may be 
+passed through the perlbrew::perl class. CPAN installation options may be 
+passed in the perlbrew::cpan::module class. Future versions of the
+perlbrew::cpan::module class will allow for installing from a **cpanfile**.
 
 ## Setup
 
@@ -43,8 +40,7 @@ management, etc.) this is the time to mention it.
 
 ### Setup Requirements **OPTIONAL**
 
-If your module requires anything extra before setting up (pluginsync enabled,
-etc.), mention it here.
+None.
 
 ### Beginning with perlbrew
 
@@ -68,12 +64,9 @@ with things. (We are working on automating this section!)
 
 ## Limitations
 
-This is where you list OS compatibility, version compatibility, etc.
-
-## Development
-
-Since your module is awesome, other users will want to play with it. Let them
-know what the ground rules for contributing are.
+Developed using:
+* Puppet 3.6.2
+* CentOS 6.5 
 
 ## Release Notes/Contributors/Etc **Optional**
 
