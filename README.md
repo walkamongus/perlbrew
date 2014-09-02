@@ -15,9 +15,12 @@
 
 ## Overview
 
-A one-maybe-two sentence summary of what the module does/what problem it solves.
-This is your 30 second elevator pitch for your module. Consider including
-OS/Puppet version it works with.
+This module installs and configures Perlbrew.  It also includes optional classes 
+to install Perl and CPAN moudles via Perlbew.
+
+Tested on:
+* Puppet 3.6.2
+* CentOS 6.5 
 
 ## Module Description
 
@@ -33,10 +36,10 @@ management, etc.) this is the time to mention it.
 
 ### What perlbrew affects
 
-* A list of files, packages, services, or operations that the module will alter,
-  impact, or execute on the system it's installed on.
-* This is a great place to stick any warnings.
-* Can be in list or paragraph form.
+* Installs curl package if necessary
+* Installs Perlbrew into $perlbrew_root
+* Optionally install a specific Perl version via Perlbrew
+* Optionaly install CPAN modules using Perlbrew-ed Perl
 
 ### Setup Requirements **OPTIONAL**
 
