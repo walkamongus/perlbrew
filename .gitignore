@@ -1,1 +1,6 @@
+.*.sw?
+pkg
+spec/fixtures
+.rspec_system
+.vagrant
 .project

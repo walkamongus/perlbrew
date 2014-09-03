@@ -1,0 +1,10 @@
+name          'puppet-perlbrew'
+version       '0.1.0'
+source        ''
+author        'Chadwick Banning'
+license       'Apache 2.0'
+summary       'Install and configure Perlbrew'
+description   'Install and configure Perlbrew'
+project_page  ''
+
+dependency 'puppetlabs/stdlib'
