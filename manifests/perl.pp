@@ -33,11 +33,11 @@ class perlbrew::perl (
       'PERLBREW_HOME=/tmp/.perlbrew',
       'HOME=/opt',
     ],
-    command  => "source ${perlbrew::perlbrew_root}/etc/bashrc; ${perlbrew::perlbrew_root}/bin/perlbrew install perl-${version} ${compile_options}",
-    creates  => "${perlbrew::perlbrew_root}/perls/perl-${version}/bin/perl",
-    provider => shell,
-    timeout  => 0,
-    require  => [ Class['perlbrew::install'], Class['perlbrew::config'], ],
+    command     => "source ${perlbrew::perlbrew_root}/etc/bashrc; ${perlbrew::perlbrew_root}/bin/perlbrew install perl-${version} ${compile_options}",
+    creates     => "${perlbrew::perlbrew_root}/perls/perl-${version}/bin/perl",
+    provider    => shell,
+    timeout     => 0,
+    require     => [ Class['perlbrew::install'], Class['perlbrew::config'], ],
   }
 
   exec {"switch_to_perl_${version}":
