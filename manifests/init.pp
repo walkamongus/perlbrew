@@ -5,17 +5,19 @@
 #
 # === Parameters
 #
-# === Variables
+# [*sample_parameter*]
+#   Explanation of what this parameter affects and what it defaults to.
 #
-# === Examples
-#
-# === Authors
-#
-# Chadwick Banning <walkamongus@users.noreply.github.com>
-#
-class perlbrew inherits perlbrew::params {
+class perlbrew (
 
-  include perlbrew::install
-  include perlbrew::config
+  $perlbrew_root = $perlbrew::params::perlbrew_root,
+
+) inherits perlbrew::params {
+
+  # param validation
+
+  class { 'perlbrew::install': } ->
+  class { 'perlbrew::config': } ->
+  Class['perlbrew']
   
 }

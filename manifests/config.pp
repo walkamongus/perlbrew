@@ -1,26 +1,12 @@
 # == Class: perlbrew::config
 #
-# This class configures Perlbrew.
+# This class configures Perlbrew and is meant to be called from perlbrew.
 #
-# === Parameters
-#
-# === Variables
-#
-# === Examples
-#
-# === Authors
-#
-# Chadwick Banning <walkamongus@users.noreply.github.com>
-#
-class perlbrew::config (
+class perlbrew::config {
 
-  $perlbrew_root = $perlbrew::params::perlbrew_root,
-
-) inherits perlbrew {
-
-  $perlbrew_sh_str = "export PERLBREW_ROOT=${perlbrew_root}
-source ${perlbrew_root}/etc/bashrc
-source ${perlbrew_root}/etc/perlbrew-completion.bash"
+  $perlbrew_sh_str = "export PERLBREW_ROOT=${perlbrew::perlbrew_root}
+source ${perlbrew::perlbrew_root}/etc/bashrc
+source ${perlbrew::perlbrew_root}/etc/perlbrew-completion.bash"
 
   file {'/etc/profile.d/perlbrew.sh':
     ensure  => present,
