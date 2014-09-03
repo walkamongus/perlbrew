@@ -1,5 +1,7 @@
 # perlbrew
 
+[![Build Status](https://travis-ci.org/walkamongus/puppet-perlbrew.svg)](https://travis-ci.org/walkamongus/puppet-perlbrew)
+
 #### Table of Contents
 
 1. [Overview](#overview)
