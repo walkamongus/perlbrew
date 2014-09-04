@@ -46,7 +46,8 @@ None.
 
 ### Beginning with perlbrew
 
-Install and conigure Perlbrew with defaults:
+Install and configure Perlbrew with defaults:
+
 `include ::perlbrew`
 
 If your most recent release breaks compatibility or requires particular steps
