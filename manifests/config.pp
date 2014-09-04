@@ -21,14 +21,4 @@ class perlbrew::config {
     order   => 01,
   }
 
-  concat::fragment {'source_perlbrew_bashrc':
-    content => "source ${perlbrew::perlbrew_root}/etc/bashrc",
-    order   => 02,
-  }
-
-  concat::fragment {'source_perlbrew_completion':
-    content => "source ${perlbrew::perlbrew_root}/etc/perlbrew-completion.bash",
-    order   => 03,
-  }
-
 }

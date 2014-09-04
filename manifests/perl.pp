@@ -63,16 +63,26 @@ class perlbrew::perl (
   
   concat::fragment {'perlbrew_manpath':
     content => "export PERLBREW_MANPATH=\"${perlbrew::perlbrew_root}/perls/perl-${version}/man\"",
-    order   => 04,
+    order   => 02,
   }
 
   concat::fragment {'perlbrew_path':
     content => "export PERLBREW_PATH=\"${perlbrew::perlbrew_root}/bin:${perlbrew::perlbrew_root}/perls/perl-${version}/bin\"",
-    order   => 05,
+    order   => 03,
   }
 
   concat::fragment {'perlbrew_perl':
     content => "export PERLBREW_PERL=\"perl-5.16.3\"",
+    order   => 04,
+  }
+
+  concat::fragment {'source_perlbrew_bashrc':
+    content => "source ${perlbrew::perlbrew_root}/etc/bashrc",
+    order   => 05,
+  }
+
+  concat::fragment {'source_perlbrew_completion':
+    content => "source ${perlbrew::perlbrew_root}/etc/perlbrew-completion.bash",
     order   => 06,
   }
 
