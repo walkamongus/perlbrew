@@ -21,11 +21,15 @@
 class perlbrew::perl (
 
   $version         = '5.16.3',
-  $compile_options = '',
+  $compile_options = [],
 
 ) {
   
   include ::perlbrew
+
+  if (is_array($compile_options)) {
+    $compile_opts = join($compile_options, ' ')
+  }
 
   exec {"install_perl_${version}":
     environment => [
@@ -33,7 +37,7 @@ class perlbrew::perl (
       'PERLBREW_HOME=/tmp/.perlbrew',
       'HOME=/opt',
     ],
-    command     => "source ${perlbrew::perlbrew_root}/etc/bashrc; ${perlbrew::perlbrew_root}/bin/perlbrew install perl-${version} ${compile_options}",
+    command     => "source ${perlbrew::perlbrew_root}/etc/bashrc; ${perlbrew::perlbrew_root}/bin/perlbrew install perl-${version} ${compile_opts}",
     creates     => "${perlbrew::perlbrew_root}/perls/perl-${version}/bin/perl",
     provider    => shell,
     timeout     => 0,
