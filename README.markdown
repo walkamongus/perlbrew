@@ -18,7 +18,7 @@
 ## Overview
 
 This module installs and configures Perlbrew.  It also includes optional classes 
-to install Perl and CPAN moudles via Perlbew.
+to install Perl and CPAN modules via Perlbew.
 
 ## Module Description
 
@@ -27,8 +27,8 @@ optional classes that may be declared for installing a spcific version of Perl
 as well as installing CPAN modules for a Perl installed with Perlbrew.
 
 Perlbrew configuration is currently limited. Perl compile-time options may be 
-passed through the perlbrew::perl class. CPAN installation options may be 
-passed in the perlbrew::cpan::module class. Future versions of the
+passed to the perlbrew::perl class. CPAN installation options may be 
+passed to the perlbrew::cpan::module class. Future versions of the
 perlbrew::cpan::module class will allow for installing from a **cpanfile**.
 
 ## Setup
@@ -46,7 +46,9 @@ None.
 
 ### Beginning with perlbrew
 
-The very basic steps needed for a user to get the module up and running.
+Install and configure Perlbrew with defaults:
+
+`include ::perlbrew`
 
 If your most recent release breaks compatibility or requires particular steps
 for upgrading, you may wish to include an additional section here: Upgrading
