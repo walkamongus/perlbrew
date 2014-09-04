@@ -10,7 +10,8 @@
 #
 class perlbrew (
 
-  $perlbrew_root = $perlbrew::params::perlbrew_root,
+  $perlbrew_root      = $perlbrew::params::perlbrew_root,
+  $perlbrew_init_file = $perlbrew::params::perlbrew_init_file,
 
 ) inherits perlbrew::params {
 

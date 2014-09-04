@@ -57,4 +57,24 @@ class perlbrew::perl (
     require => Exec["switch_to_perl_${version}"],
   }
 
+  Concat::Fragment {
+    target  => $perlbrew::perlbrew_init_file,
+    require => Class['perlbrew::config'],
+  }
+  
+  concat::fragment {'perlbrew_manpath':
+    content => "export PERLBREW_MANPATH=\"${perlbrew::perlbrew_root}/perls/perl-${version}/man\"",
+    order   => 04,
+  }
+
+  concat::fragment {'perlbrew_path':
+    content => "export PERLBREW_PATH=\"${perlbrew::perlbrew_root}/bin:${perlbrew::perlbrew_root}/perls/perl-${version}/bin\"",
+    order   => 05,
+  }
+
+  concat::fragment {'perlbrew_perl':
+    content => "export PERLBREW_PERL=\"perl-5.16.3\"",
+    order   => 06,
+  }
+
 }

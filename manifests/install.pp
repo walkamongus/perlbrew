@@ -24,10 +24,4 @@ class perlbrew::install {
     require     => Package['curl'],
   }
 
-  exec {'perlbrew_init':
-    command => "${perlbrew::perlbrew_root}/bin/perlbrew init",
-    creates => '/.perlbrew/init',
-    require => Exec['install_perlbrew'],
-  }
-
 }

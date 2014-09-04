@@ -4,17 +4,29 @@
 #
 class perlbrew::config {
 
-  $perlbrew_sh_str = "export PERLBREW_ROOT=${perlbrew::perlbrew_root}
-source ${perlbrew::perlbrew_root}/etc/bashrc
-source ${perlbrew::perlbrew_root}/etc/perlbrew-completion.bash"
-
-  file {'/etc/profile.d/perlbrew.sh':
-    ensure  => present,
+  concat {$perlbrew::perlbrew_init_file:
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
-    content => $perlbrew_sh_str,
     require => Class['perlbrew::install'],
+  }
+
+  concat::fragment {'export_perlbrew_root':
+    target  => $perlbrew::perlbrew_init_file,
+    content => "export PERLBREW_ROOT=${perlbrew::perlbrew_root}",
+    order   => 01,
+  }
+
+  concat::fragment {'source_perlbrew_bashrc':
+    target  => $perlbrew::perlbrew_init_file,
+    content => "source ${perlbrew::perlbrew_root}/etc/bashrc",
+    order   => 02,
+  }
+
+  concat::fragment {'source_perlbrew_completion':
+    target  => $perlbrew::perlbrew_init_file,
+    content => "source ${perlbrew::perlbrew_root}/etc/perlbrew-completion.bash",
+    order   => 03,
   }
 
 }
