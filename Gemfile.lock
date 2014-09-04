@@ -211,6 +211,7 @@ GEM
       multi_json (>= 1.0.0)
     slop (3.6.0)
     specinfra (1.26.0)
+    terminal-notifier-guard (1.5.3)
     thor (0.19.1)
     timers (1.1.0)
     travis (1.7.1)
@@ -250,6 +251,7 @@ DEPENDENCIES
   puppetlabs_spec_helper
   rake
   rspec-puppet!
+  terminal-notifier-guard
   travis
   travis-lint
   vagrant-wrapper

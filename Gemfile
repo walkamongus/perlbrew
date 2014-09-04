@@ -17,4 +17,5 @@ group :development do
   gem "vagrant-wrapper"
   gem "puppet-blacksmith"
   gem "guard-rake"
+  gem 'terminal-notifier-guard'
 end
