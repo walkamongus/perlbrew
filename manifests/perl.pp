@@ -58,8 +58,7 @@ class perlbrew::perl (
   }
 
   Concat::Fragment {
-    target  => $perlbrew::perlbrew_init_file,
-    require => Class['perlbrew::config'],
+    target         => $perlbrew::perlbrew_init_file,
   }
   
   concat::fragment {'perlbrew_manpath':
