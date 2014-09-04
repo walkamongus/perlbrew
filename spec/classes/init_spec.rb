@@ -6,7 +6,8 @@ describe 'perlbrew' do
       describe "perlbrew class without any parameters on #{osfamily}" do
         let(:params) {{ }}
         let(:facts) {{
-          :osfamily => osfamily,
+          :osfamily       => osfamily,
+          :concat_basedir => '/tmp',
         }}
   
         it { should compile.with_all_deps }
