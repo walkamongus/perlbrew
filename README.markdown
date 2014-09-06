@@ -60,7 +60,10 @@ Install a different customized Perl version using Perlbrew:
 
     perlbrew::perl {'my_perl_install':
       version         => '5.12.3',
-      compile_options => ['-Duseshrplib', '-Dusethreads']
+      compile_options => [
+        '-Duseshrplib',
+        '-Dusethreads',
+      ],
     }
 
 Install a CPAN module:
@@ -74,7 +77,7 @@ Install a CPAN module from a URL with install options:
       options => [
         '--notest',
         '--force',
-      ]
+      ],
     }
 
 ## Reference
