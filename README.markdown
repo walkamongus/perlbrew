@@ -65,12 +65,11 @@ Install a CPAN module:
 
 Install a CPAN module from a URL with install options:
 
-    perlbrew::cpan::module {'':
-      url     => '',
+    perlbrew::cpan::module {'Class::C3':
+      url     => 'https://cpan.metacpan.org/authors/id/F/FL/FLORA/Class-C3-0.23.tar.gz',
       options => [
-        '-n',
-        '--mirror-only',
-        '--mirror http://www.perl.com/CPAN'
+        '--notest',
+        '--force',
       ]
     }
 
