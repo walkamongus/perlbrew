@@ -5,15 +5,13 @@
 #### Table of Contents
 
 1. [Overview](#overview)
-2. [Module Description - What the module does and why it is useful](#module-description)
+2. [Module Description](#module-description)
 3. [Setup - The basics of getting started with perlbrew](#setup)
     * [What perlbrew affects](#what-perlbrew-affects)
-    * [Setup requirements](#setup-requirements)
     * [Beginning with perlbrew](#beginning-with-perlbrew)
 4. [Usage - Configuration options and additional functionality](#usage)
 5. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
 5. [Limitations - OS compatibility, etc.](#limitations)
-6. [Development - Guide for contributing to the module](#development)
 
 ## Overview
 
@@ -40,24 +38,49 @@ perlbrew::cpan::module class will allow for installing from a **cpanfile**.
 * Optionally install a specific Perl version via Perlbrew
 * Optionaly install CPAN modules using Perlbrew-ed Perl
 
-### Setup Requirements **OPTIONAL**
-
-None.
-
 ### Beginning with perlbrew
 
 Install and configure Perlbrew with defaults:
 
 `include ::perlbrew`
 
-If your most recent release breaks compatibility or requires particular steps
-for upgrading, you may wish to include an additional section here: Upgrading
-(For an example, see http://forge.puppetlabs.com/puppetlabs/firewall).
-
 ## Usage
 
-Put the classes, types, and resources for customizing, configuring, and doing
-the fancy stuff with your module here.
+Install Perlbrew to a custom directory:
+
+`
+class {'::perlbrew':
+  perlbrew_root => '/usr/local/perlbrew',
+}
+`
+
+Install a Perl version using Perlbrew:
+
+`
+perlbrew::perl{'my_perl_install':
+  version         => '5.12.3',
+  compile_options => ['-Duseshrplib', '-Dusethreads']
+}
+`
+
+Install a CPAN module:
+
+`
+perlbrew::cpan::module {'Class::DBI': }
+`
+
+Install a CPAN module from a URL with install options:
+
+`
+perlbrew::cpan::module {'':
+  url     => '',
+  options => [
+    '-n',
+    '--mirror-only',
+    '--mirror http://www.perl.com/CPAN'
+  ]
+}
+`
 
 ## Reference
 
@@ -71,9 +94,3 @@ with things. (We are working on automating this section!)
 Developed using:
 * Puppet 3.6.2
 * CentOS 6.5 
-
-## Release Notes/Contributors/Etc **Optional**
-
-If you aren't using changelog, put your release notes here (though you should
-consider using changelog). You may also add any additional sections you feel are
-necessary or important to include here. Please use the `## ` header.
