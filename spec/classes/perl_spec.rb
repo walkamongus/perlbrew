@@ -11,7 +11,17 @@ describe 'perlbrew::perl' do
         }}
   
         it { should compile.with_all_deps }
-  
+        it do
+          should contain_exec('install_perl_5.16.3').that_requires('Class[perlbrew::install]').that_requires('Class[perlbrew::config]').with({
+            :command => 'source /opt/perl5/etc/bashrc; /opt/perl5/bin/perlbrew install perl-5.16.3 '
+          })
+        end
+        it do
+          should contain_exec('switch_to_perl_5.16.3').that_requires('Exec[install_perl_5.16.3]').with({
+            :command => 'source /etc/profile; /opt/perl5/bin/perlbrew switch perl-5.16.3'
+          })
+        end
+
         context 'with defaults for all parameters' do
         end
   
