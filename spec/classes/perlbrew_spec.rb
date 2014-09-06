@@ -15,6 +15,16 @@ describe 'perlbrew' do
         context 'with defaults for all parameters' do
           it { should contain_class('perlbrew::install') }
           it { should contain_class('perlbrew::config').that_requires('Class[perlbrew::install]') }
+          it do
+            should contain_file('/opt/perl5').with({
+              'ensure' => 'directory',
+              'owner'  => 'root',
+              'group'  => 'root',
+              'mode'   => '0755',
+            })
+          end
+          it { should contain_exec('install_perlbrew').that_requires('Package[curl]') }
+          it { should contain_concat('/etc/profile.d/perlbrew.sh') }
         end
   
       end
