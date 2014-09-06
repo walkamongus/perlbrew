@@ -42,44 +42,46 @@ perlbrew::cpan::module class will allow for installing from a **cpanfile**.
 
 Install and configure Perlbrew with defaults:
 
-`include ::perlbrew`
+`
+    include ::perlbrew
+`
 
 ## Usage
 
 Install Perlbrew to a custom directory:
 
 `
-class {'::perlbrew':
-  perlbrew_root => '/usr/local/perlbrew',
-}
+    class {'::perlbrew':
+      perlbrew_root => '/usr/local/perlbrew',
+    }
 `
 
 Install a Perl version using Perlbrew:
 
 `
-perlbrew::perl{'my_perl_install':
-  version         => '5.12.3',
-  compile_options => ['-Duseshrplib', '-Dusethreads']
-}
+    perlbrew::perl{'my_perl_install':
+      version         => '5.12.3',
+      compile_options => ['-Duseshrplib', '-Dusethreads']
+    }
 `
 
 Install a CPAN module:
 
 `
-perlbrew::cpan::module {'Class::DBI': }
+    perlbrew::cpan::module {'Class::DBI': }
 `
 
 Install a CPAN module from a URL with install options:
 
 `
-perlbrew::cpan::module {'':
-  url     => '',
-  options => [
-    '-n',
-    '--mirror-only',
-    '--mirror http://www.perl.com/CPAN'
-  ]
-}
+    perlbrew::cpan::module {'':
+      url     => '',
+      options => [
+        '-n',
+        '--mirror-only',
+        '--mirror http://www.perl.com/CPAN'
+      ]
+    }
 `
 
 ## Reference
