@@ -4,11 +4,11 @@ describe 'perlbrew' do
   context 'supported operating systems' do
     ['RedHat',].each do |osfamily|
       describe "perlbrew class without any parameters on #{osfamily}" do
-        let(:params) {{ }}
         let(:facts) {{
           :osfamily       => osfamily,
           :concat_basedir => '/tmp',
         }}
+        let(:title) { 'my_perl_install' }
   
         it { should compile.with_all_deps }
   
@@ -37,6 +37,7 @@ describe 'perlbrew' do
         :osfamily        => 'Solaris',
         :operatingsystem => 'Nexenta',
       }}
+      let(:title) { 'my_perl_install' }
   
       it 'should fail' do
         expect { should compile }.to raise_error(/Nexenta not supported/)
