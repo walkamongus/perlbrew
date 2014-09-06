@@ -52,9 +52,13 @@ Install Perlbrew to a custom directory:
       perlbrew_root => '/usr/local/perlbrew',
     }
 
-Install a Perl version using Perlbrew:
+Install default Perl version 5.16.3 with defaults:
 
-    perlbrew::perl{'my_perl_install':
+    perlbrew::perl {'my_perl_install': }
+
+Install a different customized Perl version using Perlbrew:
+
+    perlbrew::perl {'my_perl_install':
       version         => '5.12.3',
       compile_options => ['-Duseshrplib', '-Dusethreads']
     }
