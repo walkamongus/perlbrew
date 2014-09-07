@@ -13,11 +13,11 @@ class perlbrew::config {
   }
 
   Concat::Fragment {
-    target         => $perlbrew::perlbrew_init_file,
+    target => $perlbrew::perlbrew_init_file,
   }
 
   concat::fragment {'export_perlbrew_root':
-    content => "export PERLBREW_ROOT=${perlbrew::perlbrew_root}",
+    content => "export PERLBREW_ROOT=\"${perlbrew::perlbrew_root}\"",
     order   => 01,
   }
 
