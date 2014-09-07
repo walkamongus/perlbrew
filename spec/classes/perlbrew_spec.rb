@@ -8,25 +8,35 @@ describe 'perlbrew' do
           :osfamily       => osfamily,
           :concat_basedir => '/tmp',
         }}
-        let(:title) { 'my_perl_install' }
   
         it { should compile.with_all_deps }
   
         context 'with defaults for all parameters' do
-          it { should contain_class('perlbrew::install') }
-          it { should contain_class('perlbrew::config').that_requires('Class[perlbrew::install]') }
-          it do
-            should contain_file('/opt/perl5').with({
+          describe 'perlbrew::init' do
+            it { should contain_class('perlbrew::params') }
+            it { should contain_class('perlbrew::install') }
+            it { should contain_class('perlbrew::config').that_requires('Class[perlbrew::install]') }
+          end
+          describe 'perlbrew::install' do
+            it { should contain_package('curl') }
+            it { should contain_file('/opt/perl5').with({
               'ensure' => 'directory',
               'owner'  => 'root',
               'group'  => 'root',
               'mode'   => '0755',
-            })
+            }) }
+            it { should contain_exec('install_perlbrew').that_requires('Package[curl]') }
           end
-          it { should contain_exec('install_perlbrew').that_requires('Package[curl]') }
-          it { should contain_concat('/etc/profile.d/perlbrew.sh') }
+          describe 'perlbrew::config' do
+            it { should contain_concat('/etc/profile.d/perlbrew.sh') }
+            it { should contain_class('concat::setup') }
+            it { should contain_concat__fragment('export_perlbrew_root').with({
+              :target   => '/etc/profile.d/perlbrew.sh',
+              :content  => 'export PERLBREW_ROOT="/opt/perl5"',
+              :order    => '01'
+            }) }
+          end
         end
-  
       end
     end
   end
