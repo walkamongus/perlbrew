@@ -72,7 +72,7 @@ class perlbrew::perl (
   }
 
   concat::fragment {'perlbrew_perl':
-    content => "export PERLBREW_PERL=\"perl-5.16.3\"",
+    content => "export PERLBREW_PERL=\"perl-${version}\"",
     order   => 04,
   }
 
