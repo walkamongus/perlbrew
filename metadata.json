@@ -1,5 +1,5 @@
 {
-  "name": "perlbrew",
+  "name": "walkamongus/perlbrew",
   "version": "0.1.0",
   "author": "Chadwick Banning",
   "summary": "Install and configure perlbrew",
