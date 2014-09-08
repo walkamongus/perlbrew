@@ -45,8 +45,7 @@ define perlbrew::cpan::module (
 
 ) {
 
-  require perlbrew
-  require perlbrew::perl
+  include perlbrew::perl
 
   $pkg_name = $url ? {
     ''      => $title,
