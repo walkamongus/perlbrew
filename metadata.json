@@ -1,5 +1,5 @@
 {
-  "name": "puppet-perlbrew",
+  "name": "perlbrew",
   "version": "0.1.0",
   "author": "Chadwick Banning",
   "summary": "Install and configure perlbrew",
@@ -7,7 +7,7 @@
   "source": "git@github.com:walkamongus/puppet-perlbrew.git",
   "project_page": "https://github.com/walkamongus/puppet-perlbrew",
   "issues_url": "https://github.com/walkamongus/puppet-perlbrew/issues",
-  "tags": ["perlbrew", "perl"],
+  "tags": ["perlbrew", "perl", "cpan"],
   "operatingsystem_support": [
     {
     "operatingsystem":"RedHat",
