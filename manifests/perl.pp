@@ -25,7 +25,7 @@ class perlbrew::perl (
 
 ) {
   
-  include ::perlbrew
+  include perlbrew
 
   if (is_array($compile_options)) {
     $compile_opts = join($compile_options, ' ')
@@ -58,7 +58,7 @@ class perlbrew::perl (
   }
 
   Concat::Fragment {
-    target         => $perlbrew::perlbrew_init_file,
+    target  => $perlbrew::perlbrew_init_file,
   }
   
   concat::fragment {'perlbrew_manpath':

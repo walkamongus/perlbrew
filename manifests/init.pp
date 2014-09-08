@@ -17,7 +17,7 @@ class perlbrew (
 
   # param validation
 
-  class { 'perlbrew::install': }->
+  class { 'perlbrew::install': } ->
   class { 'perlbrew::config': }
   
 }
