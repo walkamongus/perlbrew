@@ -12,11 +12,11 @@
     {
     "operatingsystem":"RedHat",
     "operatingsystemrelease":[ "6.0" ]
-    },
+    }
    ],
   "dependencies": [
     {
-    	"name": "puppetlabs-stdlib"
+    	"name": "puppetlabs-stdlib",
     	"name": "puppetlabs-concat"
     }
   ]
