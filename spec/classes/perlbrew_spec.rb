@@ -29,12 +29,19 @@ describe 'perlbrew' do
           end
           describe 'perlbrew::config' do
             it { should contain_concat('/etc/profile.d/perlbrew.sh') }
+            it { should contain_file('/etc/profile.d/perlbrew.sh') }
+            it { should contain_file('/tmp') }
+            it { should contain_file('/tmp/bin') }
+	    it { should contain_file('/tmp/bin/concatfragments.sh') }
+	    it { should contain_file('/tmp/_etc_profile.d_perlbrew.sh') }
+	    it { should contain_file('/tmp/_etc_profile.d_perlbrew.sh/fragments') }
             it { should contain_class('concat::setup') }
             it { should contain_concat__fragment('export_perlbrew_root').with({
               :target   => '/etc/profile.d/perlbrew.sh',
               :content  => 'export PERLBREW_ROOT="/opt/perl5"',
               :order    => '01'
             }) }
+	    it { should contain_file('/tmp/_etc_profile.d_perlbrew.sh/fragments/01_export_perlbrew_root') }
           end
         end
       end
