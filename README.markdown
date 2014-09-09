@@ -82,10 +82,10 @@ Install a CPAN module from a URL with install options:
 
 ## Reference
 
-Here, list the classes, types, providers, facts, etc contained in your module.
-This section should include all of the under-the-hood workings of your module so
-people know what the module is touching on their system but don't need to mess
-with things. (We are working on automating this section!)
+Using the perlbrew::cpan::module define to install CPAN modules will automatically 
+install the Bundle::LWP and Crypt::SSLeay modules if they are not present on the 
+system prior to installing any other modules. This enables installation of modules 
+from HTTPS mirrors.
 
 ## Limitations
 

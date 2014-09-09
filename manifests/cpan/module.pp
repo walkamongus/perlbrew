@@ -56,6 +56,16 @@ define perlbrew::cpan::module (
     $opts = join($options, ' ')
   }
 
+  exec {"install_Bundle::LWP":
+    command => "${perlbrew_root}/perls/perl-${perl_version}/bin/cpanm --install Bundle::LWP",
+    unless  => "${perlbrew_root}/perls/perl-${perl_version}/bin/perl -MBundle::LWP -e 1",
+    require => Class['perlbrew::perl']
+  } ->
+  exec {"install_Crypt::SSLeay":
+    command => "${perlbrew_root}/perls/perl-${perl_version}/bin/cpanm --install Bundle::LWP",
+    unless  => "${perlbrew_root}/perls/perl-${perl_version}/bin/perl -MCrypt::SSLeay -e 1",
+    require => Class['perlbrew::perl'],
+  } ->
   exec {"install_${pkg_name}":
     command => "${perlbrew_root}/perls/perl-${perl_version}/bin/cpanm ${opts} ${pkg_name}",
     unless  => "${perlbrew_root}/perls/perl-${perl_version}/bin/perl -M${title} -e 1",

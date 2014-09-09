@@ -1,3 +1,5 @@
-YYYY-MM-DD Release 0.1.0
-- something you did
-- something else you did
+2014-09-09 Release 0.1.0
+- initial release
+2014-09-09 Release 0.1.1
+- add Bundle::LWP as dependency for installing CPAN modules
+- add Crypt::SSLeay as dependency for installing CPAN modules
