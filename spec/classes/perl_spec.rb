@@ -24,6 +24,8 @@ describe 'perlbrew::perl' do
         it { should contain_exec('install_cpan').that_requires("Exec[switch_to_perl_#{default_perl}]").with({
           :command => "/usr/bin/curl -L http://cpanmin.us | #{default_perlbrew_root}/perls/perl-#{default_perl}/bin/perl - App::cpanminus"
         }) }
+	it { should contain_exec('install_Bundle::LWP').that_requires('Exec[install_cpan]') }
+        it { should contain_exec('install_Crypt::SSLeay').that_requires('Exec[install_Bundle::LWP]') }
         it { should contain_concat__fragment('perlbrew_manpath').with({
           :target  => '/etc/profile.d/perlbrew.sh',
           :content => "export PERLBREW_MANPATH=\"#{default_perlbrew_root}/perls/perl-#{default_perl}/man\"",

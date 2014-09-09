@@ -10,9 +10,7 @@ describe 'perlbrew::cpan::module' do
         }}
         let(:title) { 'Class::DBI' }
 	it { should contain_class('perlbrew::perl') }
-	it { should contain_exec('install_Bundle::LWP') }
-        it { should contain_exec('install_Crypt::SSLeay').that_requires('Exec[install_Bundle::LWP]') }
-	it { should contain_exec('install_Class::DBI').that_requires('Exec[install_Crypt::SSLeay]') }
+	it { should contain_exec('install_Class::DBI').that_requires('Class[perlbrew::perl]') }
       end
     end
   end
