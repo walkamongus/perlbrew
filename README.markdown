@@ -1,4 +1,4 @@
-# perlbrew
+# perlbrew Puppet Module
 
 [![Build Status](https://travis-ci.org/walkamongus/perlbrew.svg)](https://travis-ci.org/walkamongus/perlbrew)
 
