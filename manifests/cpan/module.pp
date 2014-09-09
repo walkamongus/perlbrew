@@ -62,7 +62,7 @@ define perlbrew::cpan::module (
     require => Class['perlbrew::perl']
   } ->
   exec {"install_Crypt::SSLeay":
-    command => "${perlbrew_root}/perls/perl-${perl_version}/bin/cpanm --install Bundle::LWP",
+    command => "${perlbrew_root}/perls/perl-${perl_version}/bin/cpanm --install Crypt::SSLeay",
     unless  => "${perlbrew_root}/perls/perl-${perl_version}/bin/perl -MCrypt::SSLeay -e 1",
     require => Class['perlbrew::perl'],
   } ->
