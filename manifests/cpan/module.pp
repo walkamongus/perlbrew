@@ -36,8 +36,6 @@
 #
 define perlbrew::cpan::module (
 
-  $perlbrew_root = $perlbrew::params::perlbrew_root,
-  $perl_version  = $perlbrew::perl::version,
   $url           = '',
   $options       = [
     '--install',
@@ -57,8 +55,8 @@ define perlbrew::cpan::module (
   }
 
   exec {"install_${pkg_name}":
-    command => "${perlbrew_root}/perls/perl-${perl_version}/bin/cpanm ${opts} ${pkg_name}",
-    unless  => "${perlbrew_root}/perls/perl-${perl_version}/bin/perl -M${title} -e 1",
+    command => "${perlbrew::perlbrew_root}/perls/perl-${perlbrew::perl::version}/bin/cpanm ${opts} ${pkg_name}",
+    unless  => "${perlbrew::perlbrew_root}/perls/perl-${perlbrew::perl::version}/bin/perl -M${title} -e 1",
     require => Class['perlbrew::perl']
   }
 
