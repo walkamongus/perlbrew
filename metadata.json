@@ -2,7 +2,7 @@
   "name": "walkamongus/perlbrew",
   "version": "0.1.1",
   "author": "Chadwick Banning",
-  "summary": "Install and configure perlbrew",
+  "summary": "Install and configure perlbrew, perl, and CPAN modules",
   "license": "Apache 2.0",
   "source": "git@github.com:walkamongus/perlbrew.git",
   "project_page": "https://github.com/walkamongus/perlbrew",
