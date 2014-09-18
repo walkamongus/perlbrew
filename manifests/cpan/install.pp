@@ -34,12 +34,20 @@
 #
 # Chadwick Banning <walkamongus@users.noreply.github.com>
 #
-class perlbrew::cpan::install {
+class perlbrew::cpan::install (
+
+  $options = [
+    '--installdeps',
+  ],
+
+) {
 
   include perlbrew::perl
 
+  $install_opts = join($options,' ')
+
   exec {"install_perl_modules":
-    command     => "${perlbrew::perlbrew_root}/perls/perl-${perlbrew::perl::version}/bin/cpanm --installdeps --cpanfile ${perlbrew::cpanfile_name} ${perlbrew::cpanfile_dir}",
+    command     => "${perlbrew::perlbrew_root}/perls/perl-${perlbrew::perl::version}/bin/cpanm ${install_opts} ${perlbrew::cpanfile_dir}",
     refreshonly => true,
   }
 
