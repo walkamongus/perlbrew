@@ -39,7 +39,7 @@ class perlbrew::cpan::install {
   include perlbrew::perl
 
   exec {"install_perl_modules":
-    command     => "${perlbrew::perlbrew_root}/perls/perl-${perlbrew::perl::version}/bin/cpanm --installdeps --cpanfile ${perlbrew::cpanfile} ${perlbrew::cpanfile_dir}",
+    command     => "${perlbrew::perlbrew_root}/perls/perl-${perlbrew::perl::version}/bin/cpanm --installdeps --cpanfile ${perlbrew::cpanfile_name} ${perlbrew::cpanfile_dir}",
     refreshonly => true,
   }
 
