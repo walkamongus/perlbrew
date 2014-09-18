@@ -12,6 +12,9 @@ class perlbrew (
 
   $perlbrew_root      = $perlbrew::params::perlbrew_root,
   $perlbrew_init_file = $perlbrew::params::perlbrew_init_file,
+  $cpanfile_name      = $perlbrew::params::cpanfile_name,
+  $cpanfile_dir       = $perlbrew::params::cpanfile_dir,
+
 
 ) inherits perlbrew::params {
 

@@ -94,7 +94,7 @@ class perlbrew::perl (
     order   => 06,
   }
 
-  concat {"${perlbrew::cpanfile_dir}/${perlbrew::cpanfile}":
+  concat {"${perlbrew::cpanfile_dir}/${perlbrew::cpanfile_name}":
     owner          => 'root',
     group          => 'root',
     mode           => '0644',
