@@ -46,7 +46,7 @@ class perlbrew::cpan::install (
 
   $install_opts = join($options,' ')
 
-  exec {"install_perl_modules":
+  exec {'install_perl_modules':
     command     => "${perlbrew::perlbrew_root}/perls/perl-${perlbrew::perl::version}/bin/cpanm ${install_opts} ${perlbrew::cpanfile_dir}",
     refreshonly => true,
   }
