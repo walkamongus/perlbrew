@@ -98,7 +98,6 @@ class perlbrew::perl (
     owner          => 'root',
     group          => 'root',
     mode           => '0644',
-    ensure_newline => true,
   }
 
 }
