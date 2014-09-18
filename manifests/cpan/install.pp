@@ -1,4 +1,4 @@
-# == Class: perlbrew::cpan::module
+# == Class: perlbrew::cpan::install
 #
 # install cpan modules using a Perlbrew-ed Perl.
 #
@@ -26,7 +26,7 @@
 #
 # === Examples
 #
-#  class { perlbrew::cpan::module
+#  class { perlbrew::cpan::install
 #    servers => [ 'pool.ntp.org', 'ntp.local.company.com' ]
 #  }
 #
@@ -34,19 +34,13 @@
 #
 # Chadwick Banning <walkamongus@users.noreply.github.com>
 #
-define perlbrew::cpan::module (
-
-  $version = undef,
-
-) {
+class perlbrew::cpan::install {
 
   include perlbrew::perl
 
-  concat::fragment {"perl_module_${title}":
-    ensure  => present,
-    target  => $perlbrew::cpanfile,
-    content => template('perlbrew/cpanfile_entry.erb'),
-    notify  => Exec['install_perl_modules'],
+  exec {"install_perl_modules":
+    command     => "${perlbrew::perlbrew_root}/perls/perl-${perlbrew::perl::version}/bin/cpanm --installdeps --cpanfile ${perlbrew::cpanfile} ${perlbrew::cpanfile_dir}",
+    refreshonly => true,
   }
 
 }

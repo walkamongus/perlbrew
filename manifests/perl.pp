@@ -94,4 +94,11 @@ class perlbrew::perl (
     order   => 06,
   }
 
+  concat {"${perlbrew::cpanfile_dir}/${perlbrew::cpanfile}":
+    owner          => 'root',
+    group          => 'root',
+    mode           => '0644',
+    ensure_newline => true,
+  }
+
 }
