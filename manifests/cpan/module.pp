@@ -41,10 +41,11 @@ define perlbrew::cpan::module (
 ) {
 
   include perlbrew::perl
+  include perlbrew::cpan::install
 
   concat::fragment {"perl_module_${title}":
     ensure  => present,
-    target  => $perlbrew::cpanfile,
+    target  => "${perlbrew::cpanfile_dir}/${perlbrew::cpanfile_name}",
     content => template('perlbrew/cpanfile_entry.erb'),
     notify  => Exec['install_perl_modules'],
   }
