@@ -15,9 +15,7 @@
     }
    ],
   "dependencies": [
-    {
-    	"name": "puppetlabs-stdlib",
-    	"name": "puppetlabs-concat"
-    }
+    { "name": "puppetlabs-stdlib" },
+    { "name": "puppetlabs-concat" }
   ]
 }
