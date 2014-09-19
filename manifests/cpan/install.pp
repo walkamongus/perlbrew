@@ -43,6 +43,7 @@ class perlbrew::cpan::install (
     command     => $cpan_command,
     subscribe   => Concat["${cpanfile_dir}/${cpanfile_name}"],
     refreshonly => true,
+    timeout     => 0,
   }
 
 }
