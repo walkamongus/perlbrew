@@ -3,3 +3,5 @@
 2014-09-09 Release 0.1.1
 - bugfix: Bundle::LWP dependency for installing CPAN modules
 - bugfix: Crypt::SSLeay dependency for installing CPAN modules
+2014-09-19 Release 0.2.0
+- CPAN modules are now installed via a dynamically generated cpanfile
