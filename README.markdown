@@ -97,23 +97,23 @@ Install a CPAN module with custom install options:
 
 ###Parameters
 
-***perlbrew class***
+***perlbrew***
 * `perlbrew_root`: perlbrew installation root directory. Defaults to '/opt/perl5' 
 * `perlbrew_init_file`: file to hold required perlbrew ENV variables.  This file should 
 be sourced by users on login. Defaults to '/etc/profile.d/perlbrew.sh'
 
-***perlbrew::perl class***
+***perlbrew::perl***
 * `version`: perl version string to install via perlbrew. Should be recognizeable 
 by perlbrew. Defaults to '5.16.3'
 * `compile_options`: Array of perlbrew options that get passed to the perlbrew perl 
 installation command.  Defaults to empty array
 
-***perlbrew::cpan::install class***
+***perlbrew::cpan::install***
 * `cpanfile_dir`: Directory in which the cpanfile is placed.  Defaults to '/tmp'
 * `options`: Array of options passed to the cpan command for module installation. 
 The '--installdeps' option is always passed in order to install from the cpanfile.
 
-***perlbrew::cpan::install class***
+***perlbrew::cpan::module***
 * `version`: Version string or range for the module to install. 
 See [Version_Formats](http://search.cpan.org/~dagolden/CPAN-Meta-2.142060/lib/CPAN/Meta/Spec.pm#Version_Formats) 
 for more information.
