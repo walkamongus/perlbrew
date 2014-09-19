@@ -15,8 +15,6 @@ class perlbrew::params {
     'RedHat': {
       $perlbrew_root      = '/opt/perl5'
       $perlbrew_init_file = '/etc/profile.d/perlbrew.sh'
-      $cpanfile_name      = 'cpanfile'
-      $cpanfile_dir       = '/tmp'
     }
     default: {
       fail("${::operatingsystem} not supported")
