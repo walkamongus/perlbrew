@@ -6,3 +6,5 @@
 2014-09-19 Release 0.2.0
 - CPAN modules are now installed via a dynamically generated cpanfile
 - documentation improvements
+2014-09-19 Release 0.2.1
+- bugfix: disable timeout for CPAN module installation
