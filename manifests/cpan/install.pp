@@ -18,15 +18,18 @@ class perlbrew::cpan::install (
 
   $cpanfile_name = 'cpanfile',
   $cpanfile_dir  = '/tmp',
-  $options       = [
-    '--installdeps',
-  ],
+  $options       = [],
 
 ) {
 
   include perlbrew::perl
 
-  $install_opts = join($options,' ')
+  $default_options = [
+    '--installdeps',
+  ]
+
+  $merged_options = concat($default_options, $options)
+  $install_opts = join($merged_options, ' ')
 
   concat {"${cpanfile_dir}/${cpanfile_name}":
     owner => 'root',
