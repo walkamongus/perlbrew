@@ -48,6 +48,7 @@ class perlbrew::cpan::install (
 
   exec {'install_perl_modules':
     command     => "${perlbrew::perlbrew_root}/perls/perl-${perlbrew::perl::version}/bin/cpanm ${install_opts} ${perlbrew::cpanfile_dir}",
+    subscribe   => Concat["${perlbrew::cpanfile_dir}/cpanfile"],
     refreshonly => true,
   }
 
