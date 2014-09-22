@@ -1,6 +1,6 @@
 {
   "name": "walkamongus/perlbrew",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "author": "Chadwick Banning",
   "summary": "Install and configure perlbrew, perl, and CPAN modules",
   "license": "Apache 2.0",

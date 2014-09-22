@@ -8,3 +8,5 @@
 - documentation improvements
 2014-09-19 Release 0.2.1
 - bugfix: disable timeout for CPAN module installation
+2014-09-19 Release 0.2.2
+- bugfix: remove unnecessary notify dependency
