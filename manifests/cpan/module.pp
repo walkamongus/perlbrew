@@ -29,7 +29,6 @@ define perlbrew::cpan::module (
     ensure  => present,
     target  => "${perlbrew::cpan::install::cpanfile_dir}/${perlbrew::cpan::install::cpanfile_name}",
     content => template('perlbrew/cpanfile_entry.erb'),
-    notify  => Exec['install_perl_modules'],
   }
 
 }
