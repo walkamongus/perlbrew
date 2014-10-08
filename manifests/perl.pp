@@ -71,27 +71,38 @@ class perlbrew::perl (
     target  => $perlbrew::perlbrew_init_file,
   }
   
+  concat::fragment {'perlbrew_bash':
+    target  => $perlbrew::perlbrew_init_file,
+    content => '#!/bin/bash',
+    order   => 01,
+  }
+
   concat::fragment {'perlbrew_manpath':
+    target  => $perlbrew::perlbrew_init_file,
     content => "export PERLBREW_MANPATH=\"${perlbrew::perlbrew_root}/perls/perl-${version}/man\"",
     order   => 02,
   }
 
   concat::fragment {'perlbrew_path':
+    target  => $perlbrew::perlbrew_init_file,
     content => "export PERLBREW_PATH=\"${perlbrew::perlbrew_root}/bin:${perlbrew::perlbrew_root}/perls/perl-${version}/bin\"",
     order   => 03,
   }
 
   concat::fragment {'perlbrew_perl':
+    target  => $perlbrew::perlbrew_init_file,
     content => "export PERLBREW_PERL=\"perl-${version}\"",
     order   => 04,
   }
 
   concat::fragment {'source_perlbrew_bashrc':
+    target  => $perlbrew::perlbrew_init_file,
     content => "source ${perlbrew::perlbrew_root}/etc/bashrc",
     order   => 05,
   }
 
   concat::fragment {'source_perlbrew_completion':
+    target  => $perlbrew::perlbrew_init_file,
     content => "source ${perlbrew::perlbrew_root}/etc/perlbrew-completion.bash",
     order   => 06,
   }
