@@ -24,7 +24,7 @@ class perlbrew::perl (
   $compile_options = [],
 
 ) {
-  
+
   include perlbrew
 
   if (is_array($compile_options)) {
@@ -37,7 +37,7 @@ class perlbrew::perl (
       'PERLBREW_HOME=/tmp/.perlbrew',
       'HOME=/opt',
     ],
-    command     => "source ${perlbrew::perlbrew_root}/etc/bashrc; ${perlbrew::perlbrew_root}/bin/perlbrew install perl-${version} ${compile_opts}",
+    command     => "/bin/bash --login -c \"source ${perlbrew::perlbrew_root}/etc/bashrc; ${perlbrew::perlbrew_root}/bin/perlbrew install perl-${version} ${compile_opts}\"",
     creates     => "${perlbrew::perlbrew_root}/perls/perl-${version}/bin/perl",
     provider    => shell,
     timeout     => 0,
@@ -45,7 +45,7 @@ class perlbrew::perl (
   }
 
   exec {"switch_to_perl_${version}":
-    command  => "source /etc/profile; ${perlbrew::perlbrew_root}/bin/perlbrew switch perl-${version}",
+    command  => "/bin/bash --login -c \"source /etc/profile; ${perlbrew::perlbrew_root}/bin/perlbrew switch perl-${version}\"",
     provider => shell,
     unless   => "perl -e 'print $^V' | grep v${version}",
     require  => Exec["install_perl_${version}"],
@@ -70,28 +70,33 @@ class perlbrew::perl (
   Concat::Fragment {
     target  => $perlbrew::perlbrew_init_file,
   }
-  
+
   concat::fragment {'perlbrew_manpath':
+    target  => $perlbrew::perlbrew_init_file,
     content => "export PERLBREW_MANPATH=\"${perlbrew::perlbrew_root}/perls/perl-${version}/man\"",
     order   => 02,
   }
 
   concat::fragment {'perlbrew_path':
+    target  => $perlbrew::perlbrew_init_file,
     content => "export PERLBREW_PATH=\"${perlbrew::perlbrew_root}/bin:${perlbrew::perlbrew_root}/perls/perl-${version}/bin\"",
     order   => 03,
   }
 
   concat::fragment {'perlbrew_perl':
+    target  => $perlbrew::perlbrew_init_file,
     content => "export PERLBREW_PERL=\"perl-${version}\"",
     order   => 04,
   }
 
   concat::fragment {'source_perlbrew_bashrc':
+    target  => $perlbrew::perlbrew_init_file,
     content => "source ${perlbrew::perlbrew_root}/etc/bashrc",
     order   => 05,
   }
 
   concat::fragment {'source_perlbrew_completion':
+    target  => $perlbrew::perlbrew_init_file,
     content => "source ${perlbrew::perlbrew_root}/etc/perlbrew-completion.bash",
     order   => 06,
   }
