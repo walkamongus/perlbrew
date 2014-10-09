@@ -48,7 +48,7 @@ class perlbrew::perl (
     command  => "/bin/bash --login -c \"source /etc/profile; ${perlbrew::perlbrew_root}/bin/perlbrew switch perl-${version}\"",
     provider => shell,
     unless   => "perl -e 'print $^V' | grep v${version}",
-    require  => Exec["install_perl_${version}"],
+    require  => [ Exec["install_perl_${version}"], File[$perlbrew::perlbrew_init_file], ],
   }
 
   exec{"perl_${version}_install_cpan":
@@ -67,14 +67,12 @@ class perlbrew::perl (
     order   => 02,
     require => Exec["install_perl_${version}"],
   }
-
   concat::fragment {'perlbrew_path':
     target  => $perlbrew::perlbrew_init_file,
     content => "export PERLBREW_PATH=\"${perlbrew::perlbrew_root}/bin:${perlbrew::perlbrew_root}/perls/perl-${version}/bin\"",
     order   => 03,
     require => Exec["install_perl_${version}"],
   }
-
   concat::fragment {'perlbrew_perl':
     target  => $perlbrew::perlbrew_init_file,
     content => "export PERLBREW_PERL=\"perl-${version}\"",
