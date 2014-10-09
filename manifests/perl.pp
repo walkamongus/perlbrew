@@ -51,17 +51,17 @@ class perlbrew::perl (
     require  => Exec["install_perl_${version}"],
   }
 
-  exec{'install_cpan':
+  exec{"perl_${version}_install_cpan":
     command => "/usr/bin/curl -L http://cpanmin.us | ${perlbrew::perlbrew_root}/perls/perl-${version}/bin/perl - App::cpanminus",
     creates => "${perlbrew::perlbrew_root}/perls/perl-${version}/bin/cpanm",
     require => Exec["switch_to_perl_${version}"],
   } ->
-  exec {'install_Bundle::LWP':
+  exec {"perl_${version}_install_Bundle::LWP":
     command => "${perlbrew::perlbrew_root}/perls/perl-${version}/bin/cpanm --install Bundle::LWP",
     unless  => "${perlbrew::perlbrew_root}/perls/perl-${version}/bin/perl -MBundle::LWP -e 1",
     timeout => 0,
   } ->
-  exec {'install_Crypt::SSLeay':
+  exec {"perl_${version}_install_Crypt::SSLeay":
     command => "${perlbrew::perlbrew_root}/perls/perl-${version}/bin/cpanm --install Crypt::SSLeay",
     unless  => "${perlbrew::perlbrew_root}/perls/perl-${version}/bin/perl -MCrypt::SSLeay -e 1",
     timeout => 0,
