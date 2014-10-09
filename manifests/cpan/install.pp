@@ -37,14 +37,12 @@ class perlbrew::cpan::install (
     mode  => '0644',
   }
 
-  $cpan_command = "${perlbrew::perlbrew_root}/perls/perl-${perlbrew::perl::version}/bin/cpanm ${install_opts} ${cpanfile_dir}"
-
   exec {"install_perl_${perlbrew::perl::version}_modules":
-    command     => $cpan_command,
+    command     => "/bin/bash --login -c \"cpanm ${install_opts} ${cpanfile_dir}\"",
+    provider    => shell,
     subscribe   => Concat["${cpanfile_dir}/${cpanfile_name}"],
     refreshonly => true,
     timeout     => 0,
-    require => Exec["perl_${perlbrew::perl::version}_install_cpan"],
+    require     => Exec["perl_${perlbrew::perl::version}_install_cpan"],
   }
-
 }
