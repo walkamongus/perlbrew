@@ -45,14 +45,14 @@ class perlbrew::perl (
   }
 
   exec {"switch_to_perl_${version}":
-    command  => "/bin/bash --login -c \"${perlbrew::perlbrew_root}/bin/perlbrew switch perl-${version}\"",
+    command  => "/bin/bash --login -c \"perlbrew switch perl-${version}\"",
     provider => shell,
     unless   => "perl -e 'print $^V' | grep v${version}",
     require  => [ Exec["install_perl_${version}"], File[$perlbrew::perlbrew_init_file], ],
   }
 
   exec{"perl_${version}_install_cpan":
-    command => "/bin/bash --login -c \"/usr/bin/curl -L http://cpanmin.us | perl - App::cpanminus\"",
+    command => "/bin/bash --login -c \"curl -L http://cpanmin.us | perl - App::cpanminus\"",
     provider => shell,
     creates => "${perlbrew::perlbrew_root}/perls/perl-${version}/bin/cpanm",
     require => Exec["switch_to_perl_${version}"],
