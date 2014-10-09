@@ -41,7 +41,7 @@ class perlbrew::perl (
     creates     => "${perlbrew::perlbrew_root}/perls/perl-${version}/bin/perl",
     provider    => shell,
     timeout     => 0,
-    require     => [ Class['perlbrew::install'], Class['perlbrew::config'], ],
+    require     => [ Class['perlbrew::install'], ],
   }
 
   exec {"switch_to_perl_${version}":
