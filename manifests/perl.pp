@@ -56,6 +56,7 @@ class perlbrew::perl (
     provider => shell,
     creates => "${perlbrew::perlbrew_root}/perls/perl-${version}/bin/cpanm",
     require => Exec["switch_to_perl_${version}"],
+    timeout     => 0,
   }
 
   Concat::Fragment {
