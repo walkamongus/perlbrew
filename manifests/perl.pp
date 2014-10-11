@@ -24,7 +24,7 @@ class perlbrew::perl (
   $compile_options = [],
 
 ) {
-  
+
   include perlbrew
 
   if (is_array($compile_options)) {
@@ -37,63 +37,62 @@ class perlbrew::perl (
       'PERLBREW_HOME=/tmp/.perlbrew',
       'HOME=/opt',
     ],
-    command     => "source ${perlbrew::perlbrew_root}/etc/bashrc; ${perlbrew::perlbrew_root}/bin/perlbrew install perl-${version} ${compile_opts}",
+    command     => "/bin/bash --login -c \"source ${perlbrew::perlbrew_root}/etc/bashrc; ${perlbrew::perlbrew_root}/bin/perlbrew install perl-${version} ${compile_opts}\"",
     creates     => "${perlbrew::perlbrew_root}/perls/perl-${version}/bin/perl",
     provider    => shell,
     timeout     => 0,
-    require     => [ Class['perlbrew::install'], Class['perlbrew::config'], ],
+    require     => [ Class['perlbrew::install'], ],
   }
 
   exec {"switch_to_perl_${version}":
-    command  => "source /etc/profile; ${perlbrew::perlbrew_root}/bin/perlbrew switch perl-${version}",
+    command  => "/bin/bash --login -c \"perlbrew switch perl-${version}\"",
     provider => shell,
     unless   => "perl -e 'print $^V' | grep v${version}",
-    require  => Exec["install_perl_${version}"],
+    require  => [ Exec["install_perl_${version}"], File[$perlbrew::perlbrew_init_file], ],
   }
 
-  exec{'install_cpan':
-    command => "/usr/bin/curl -L http://cpanmin.us | ${perlbrew::perlbrew_root}/perls/perl-${version}/bin/perl - App::cpanminus",
+  exec{"perl_${version}_install_cpan":
+    command => "/bin/bash --login -c \"curl -L http://cpanmin.us | perl - App::cpanminus\"",
+    provider => shell,
     creates => "${perlbrew::perlbrew_root}/perls/perl-${version}/bin/cpanm",
     require => Exec["switch_to_perl_${version}"],
-  } ->
-  exec {'install_Bundle::LWP':
-    command => "${perlbrew::perlbrew_root}/perls/perl-${version}/bin/cpanm --install Bundle::LWP",
-    unless  => "${perlbrew::perlbrew_root}/perls/perl-${version}/bin/perl -MBundle::LWP -e 1",
-    timeout => 0,
-  } ->
-  exec {'install_Crypt::SSLeay':
-    command => "${perlbrew::perlbrew_root}/perls/perl-${version}/bin/cpanm --install Crypt::SSLeay",
-    unless  => "${perlbrew::perlbrew_root}/perls/perl-${version}/bin/perl -MCrypt::SSLeay -e 1",
-    timeout => 0,
+    timeout     => 0,
   }
 
   Concat::Fragment {
     target  => $perlbrew::perlbrew_init_file,
   }
-  
+
   concat::fragment {'perlbrew_manpath':
+    target  => $perlbrew::perlbrew_init_file,
     content => "export PERLBREW_MANPATH=\"${perlbrew::perlbrew_root}/perls/perl-${version}/man\"",
     order   => 02,
+    require => Exec["install_perl_${version}"],
   }
 
   concat::fragment {'perlbrew_path':
+    target  => $perlbrew::perlbrew_init_file,
     content => "export PERLBREW_PATH=\"${perlbrew::perlbrew_root}/bin:${perlbrew::perlbrew_root}/perls/perl-${version}/bin\"",
     order   => 03,
+    require => Exec["install_perl_${version}"],
   }
 
   concat::fragment {'perlbrew_perl':
+    target  => $perlbrew::perlbrew_init_file,
     content => "export PERLBREW_PERL=\"perl-${version}\"",
     order   => 04,
+    require => Exec["install_perl_${version}"],
   }
 
   concat::fragment {'source_perlbrew_bashrc':
+    target  => $perlbrew::perlbrew_init_file,
     content => "source ${perlbrew::perlbrew_root}/etc/bashrc",
     order   => 05,
   }
 
   concat::fragment {'source_perlbrew_completion':
+    target  => $perlbrew::perlbrew_init_file,
     content => "source ${perlbrew::perlbrew_root}/etc/perlbrew-completion.bash",
     order   => 06,
   }
-
 }
