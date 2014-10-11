@@ -66,11 +66,11 @@ Install Perlbrew to a custom directory:
 
 Install default Perl version 5.16.3:
 
-    perlbrew::perl {'my_perl_install': }
+    class {'perlbrew::perl': }
 
 Install a different customized Perl version using Perlbrew:
-
-    perlbrew::perl {'my_perl_install':
+   
+    class {'perlbrew::perl':
       version         => '5.12.3',
       compile_options => [
         '-Duseshrplib',
