@@ -39,6 +39,11 @@ describe 'perlbrew::perl' do
 	  :unless => "#{default_perlbrew_root}/perls/perl-#{default_perl}/bin/perl -MCrypt::SSLeay -e 1"
 	}) }
 
+        it { should contain_concat__fragment('perlbrew_bash').with({
+          :target  => '/etc/profile.d/perlbrew.sh',
+          :content => "#!/bin/bash",
+          :order   => '01'
+        }) }
         it { should contain_concat__fragment('perlbrew_manpath').with({
           :target  => '/etc/profile.d/perlbrew.sh',
           :content => "export PERLBREW_MANPATH=\"#{default_perlbrew_root}/perls/perl-#{default_perl}/man\"",
