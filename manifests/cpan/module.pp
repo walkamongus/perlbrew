@@ -26,7 +26,6 @@ define perlbrew::cpan::module (
   include perlbrew::cpan::install
 
   concat::fragment {"perl_module_${title}"  :
-    ensure  => present,
     target  => "${perlbrew::cpan::install::cpanfile_dir}/${perlbrew::cpan::install::cpanfile_name}",
     content => template('perlbrew/cpanfile_entry.erb'),
   }
